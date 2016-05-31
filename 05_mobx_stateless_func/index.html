@@ -8,11 +8,11 @@
 <body>
 <div id="react-swatch"></div>
 
-<script src="https://cdn.jsdelivr.net/g/lodash@4.13.1,js-signals@1.0.0"></script>
+<script src="https://cdn.jsdelivr.net/g/react@15.1.0(react.min.js+react-dom.min.js),lodash@4.13.1,js-signals@1.0.0"></script>
 <script src="https://fb.me/react-15.1.0.js"></script>
 <script src="https://fb.me/react-dom-15.1.0.js"></script>
 <script src="https://npmcdn.com/why-did-you-update@0.0.8/umd/why-did-you-update.min.js"></script>
-<script>WhyDidYouUpdate.whyDidYouUpdate(React)</script>
+<!--<script>WhyDidYouUpdate.whyDidYouUpdate(React)</script>-->
 
 <script src="https://npmcdn.com/mobx/lib/mobx.umd.js"></script>
 <script src="https://npmcdn.com/mobx-react"></script>
@@ -33,7 +33,19 @@
 			),
 			document.getElementById('react-swatch')
 	);
-	
+
+
+	// just for testing fun
+	var addRandomSwatches = mobx.action(function addRandomSwatches (numberToAdd) {
+		var numberOfSwatches = swatchData1.swatches.length - 1;
+		_.times(numberToAdd, function () {
+			var randomSwatchData = _.assign({}, swatchData1.swatches[_.random(numberOfSwatches)], {
+				selected: false,
+				materialId: _.uniqueId('swatch_')
+			});
+			store.swatches.push(new Swatch.SwatchModel(randomSwatchData));
+		});
+	});
 
 </script>
 
