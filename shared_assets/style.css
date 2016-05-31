@@ -1,0 +1,92 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td, menu {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	vertical-align: baseline;
+	color: #333;
+}
+
+h1 {
+	padding: 0;
+	margin: 0 0 10px;
+	color: #59452a;
+	font-size: 24px;
+}
+
+.loading {
+	height: 600px;
+	width: 300px;
+	line-height: 300px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.error {
+	height: 600px;
+	width: 300px;
+	line-height: 300px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	color: red;
+}
+
+/* -------------------------------------
+   SWATCH DETAILS
+------------------------------------- */
+.swatch-viewer {
+	position: relative;
+	margin: 10px;
+	width: 280px;
+}
+
+.swatch-image-container {
+	display: inline-block;
+	vertical-align: top;
+	width: 260px;
+	margin: 0 15px 15px 15px;
+}
+
+.swatch-viewer .selected-swatch-image {
+	margin: 0 0 10px;
+}
+
+.swatch-viewer .selected-swatch-name {
+	color: #56462f;
+	font-size: 14px;
+	display: block;
+	margin: 0 0 10px;
+}
+
+.swatch-container {
+	margin: 15px 0 10px;
+}
+
+.swatch-viewer .swatch {
+	border: solid 1px #fff;
+	display: inline-block;
+	padding: 3px;
+	margin: 1px;
+}
+
+.swatch-viewer .swatch img {
+	height: 31px;
+	width: 31px;
+	vertical-align: top;
+}
+
+.swatch-viewer .swatch.selected,
+.swatch-viewer .swatch:hover {
+	border-color: #cf7600;
+}

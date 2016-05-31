@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Swatch viewer non-mobx</title>
+	<link rel="stylesheet" href="../shared_assets/style.css"/>
+</head>
+<body>
+<div id="react-swatch"></div>
+
+<script src="https://cdn.jsdelivr.net/g/react@15.0.2(react.min.js+react-dom.min.js),lodash@4.12.0,js-signals@1.0.0"></script>
+<script type="text/javascript" src="../shared_assets/swatch-data-1.js"></script>
+<script src="https://npmcdn.com/mobx@2.2.2/lib/mobx.umd.js"></script>
+
+<script src="https://npmcdn.com/why-did-you-update@0.0.8/umd/why-did-you-update.min.js"></script>
+<!--<script>WhyDidYouUpdate.whyDidYouUpdate(React)</script>-->
+
+
+<script type="text/javascript" src="js/swatch-store.js"></script>
+<script type="text/javascript" src="js/swatch-renderer-viewer.js"></script>
+
+<script type="text/javascript">
+	var store = new Swatch.SwatchStore(swatchData1);
+
+	ReactDOM.render(
+			React.createElement(
+					Swatch.ViewerFullRenderer,
+					{store: store}
+			),
+			document.getElementById('react-swatch')
+	);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>Swatch viewer non-mobx</title>
+	<link rel="stylesheet" href="../shared_assets/style.css"/>
+</head>
+<body>
+<div id="react-swatch"></div>
+
+<script src="https://cdn.jsdelivr.net/g/lodash@4.12.0,js-signals@1.0.0"></script>
+<script src="https://fb.me/react-15.0.2.js"></script>
+<script src="https://fb.me/react-dom-15.0.2.js"></script>
+<script src="https://npmcdn.com/why-did-you-update@0.0.8/umd/why-did-you-update.min.js"></script>
+<script>WhyDidYouUpdate.whyDidYouUpdate(React)</script>
+
+<script src="https://npmcdn.com/mobx@2.2.0-beta.1/lib/mobx.umd.js"></script>
+<script src="https://npmcdn.com/mobx-react@3.1.0"></script>
+<script src="https://npmcdn.com/mobx-react-devtools@4.0.5"></script>
+
+<script type="text/javascript" src="../shared_assets/swatch-data-1.js"></script>
+
+<script type="text/javascript" src="js/swatch-store-old.js"></script>
+<script type="text/javascript" src="js/swatch-renderer-viewer.js"></script>
+
+<script type="text/javascript">
+	var store = new Swatch.SwatchStore(swatchData1);
+	store.listenableActions.swatchDataChanged.add(function () {
+		ReactDOM.render(
+				React.createElement(
+						Swatch.ViewerFullRenderer,
+						{store: store}
+				),
+				document.getElementById('react-swatch')
+		);
+	});
+
+
+</script>
+
+</body>
+</html>
