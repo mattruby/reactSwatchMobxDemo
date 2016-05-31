@@ -6,17 +6,19 @@
 		displayName: 'ViewerFullRenderer',
 		render: function () {
 
+			var store = this.props.store;
+
 			return React.DOM.div({
 					className: 'swatch-viewer'
 				},
 				// React.createElement(mobxDevtools.default),
-				React.DOM.h1(null, this.props.store.title),
+				React.DOM.h1(null, store.title),
 				React.createElement(Swatch.selectedSwatchRenderer, {
-					selectedSwatch: this.props.store.selectedSwatch
+					selectedSwatch: store.selectedSwatch
 				}),
 				React.createElement(Swatch.swatchGroupRenderer, {
-					swatches: this.props.store.swatches,
-					setSelectedSwatch: this.props.store.setSelectedSwatch
+					swatches: store.swatches,
+					setSelectedSwatch: store.setSelectedSwatch
 				})
 			);
 
