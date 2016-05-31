@@ -11,7 +11,9 @@
 				},
 				// React.createElement(mobxDevtools.default),
 				React.DOM.h1(null, this.props.store.title),
-				React.createElement(Swatch.selectedSwatchRenderer, {selectedSwatch: this.props.store.selectedSwatch}),
+				React.createElement(Swatch.selectedSwatchRenderer, {
+					selectedSwatch: this.props.store.selectedSwatch
+				}),
 				React.createElement(Swatch.swatchGroupRenderer, {
 					swatches: this.props.store.swatches,
 					setSelectedSwatch: this.props.store.setSelectedSwatch
