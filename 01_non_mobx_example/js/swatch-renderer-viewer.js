@@ -4,27 +4,16 @@
 
 		Swatch.ViewerFullRenderer = React.createClass({
 			displayName: 'ViewerFullRenderer',
-			componentWillMount: function () {
-				var self = this;
-				var store = this.props.store;
-				this.props.store.listenableActions.swatchDataChanged.add(function () {
-					self.setState({
-						title: store.title,
-						selectedSwatch: store.getSelectedSwatch(),
-						swatches: store.swatches
-					});
-				});
-			},
 			render: function () {
-				var state = this.state;
+				
 				return React.DOM.div({
 						className: 'swatch-viewer'
 					},
-					React.DOM.h1(null, state.title),
-					React.createElement(Swatch.selectedSwatchRenderer, {selectedSwatch: state.selectedSwatch}),
+					React.DOM.h1(null, this.props.title),
+					React.createElement(Swatch.selectedSwatchRenderer, {selectedSwatch: this.props.selectedSwatch}),
 					React.createElement(Swatch.swatchGroupRenderer, {
-						swatches: state.swatches,
-						setSelectedSwatch: this.props.store.actions.swatchSelected
+						swatches: this.props.swatches,
+						setSelectedSwatch: this.props.setSelectedSwatch
 					})
 				);
 
@@ -96,7 +85,7 @@
 			},
 			swatchClickHandler: function () {
 				console.log('swatch id: ' + this.props.swatch.materialId);
-				this.props.setSelectedSwatch.dispatch(this.props.swatch.materialId);
+				this.props.setSelectedSwatch(this.props.swatch.materialId);
 			}
 		});
 

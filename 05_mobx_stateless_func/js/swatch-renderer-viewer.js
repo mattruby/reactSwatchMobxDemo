@@ -9,8 +9,13 @@
 			},
 			// React.createElement(mobxDevtools.default),
 			React.DOM.h1(null, props.store.title),
-			React.createElement(Swatch.selectedSwatchRenderer, {selectedSwatch: props.store.selectedSwatch}),
-			React.createElement(Swatch.swatchGroupRenderer, {swatches: props.store.swatches})
+			React.createElement(Swatch.selectedSwatchRenderer, {
+				selectedSwatch: props.store.selectedSwatch
+			}),
+			React.createElement(Swatch.swatchGroupRenderer, {
+				swatches: props.store.swatches,
+				setSelectedSwatch: props.setSelectedSwatch
+			})
 		);
 	});
 
@@ -38,14 +43,16 @@
 
 	Swatch.swatchGroupRenderer = mobxReact.observer(function swatchGroup_swatch (props) {
 
-		var renderedSwatches = props.swatches.map(function (swatch) {
-			return React.createElement(Swatch.swatchThumbnailRenderer, {key: swatch.materialId, swatch: swatch});
-		}, this);
-
 		return React.DOM.div({
 				className: 'swatch-container'
 			},
-			renderedSwatches
+			props.swatches.map(function (swatch) {
+				return React.createElement(Swatch.swatchThumbnailRenderer, {
+					key: swatch.materialId,
+					swatch: swatch,
+					setSelectedSwatch: props.setSelectedSwatch
+				});
+			}, this)
 		);
 	});
 
@@ -54,11 +61,9 @@
 		var swatch = props.swatch;
 
 		swatchThumbnail_swatch.swatchClickHandler = function () {
-			// props.setSelectedSwatchSignal.dispatch(props.materialId)
 			console.log('swatch id: ' + props.swatch.materialId);
 			store.setSelectedSwatch(props.swatch.materialId);
 		};
-
 
 		var className = 'swatch' + (swatch.selected ? ' selected' : '');
 

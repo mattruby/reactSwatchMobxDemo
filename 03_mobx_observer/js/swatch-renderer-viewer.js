@@ -5,14 +5,17 @@
 	Swatch.ViewerFullRenderer = mobxReact.observer(React.createClass({
 		displayName: 'ViewerFullRenderer',
 		render: function () {
-			var store = this.props.store;
+
 			return React.DOM.div({
 					className: 'swatch-viewer'
 				},
-				React.createElement(mobxDevtools.default),
-				React.DOM.h1(null, store.title),
-				React.createElement(Swatch.selectedSwatchRenderer, {selectedSwatch: store.selectedSwatch}),
-				React.createElement(Swatch.swatchGroupRenderer, {swatches: store.swatches})
+				// React.createElement(mobxDevtools.default),
+				React.DOM.h1(null, this.props.store.title),
+				React.createElement(Swatch.selectedSwatchRenderer, {selectedSwatch: this.props.store.selectedSwatch}),
+				React.createElement(Swatch.swatchGroupRenderer, {
+					swatches: this.props.store.swatches,
+					setSelectedSwatch: this.props.store.setSelectedSwatch
+				})
 			);
 
 		}
@@ -46,7 +49,11 @@
 
 			var renderedSwatches = this.props.swatches.map(function (swatch) {
 				return React.createElement(Swatch.swatchThumbnailRenderer,
-					{key: swatch.materialId, swatch: swatch});
+					{
+						key: swatch.materialId,
+						swatch: swatch,
+						setSelectedSwatch: this.props.setSelectedSwatch
+					});
 			}, this);
 
 			return React.DOM.div({
@@ -78,9 +85,8 @@
 			);
 		},
 		swatchClickHandler: function () {
-			// props.setSelectedSwatchSignal.dispatch(props.materialId)
 			console.log('swatch id: ' + this.props.swatch.materialId);
-			store.setSelectedSwatch(this.props.swatch.materialId);
+			this.props.setSelectedSwatch(this.props.swatch.materialId);
 		}
 	}));
 

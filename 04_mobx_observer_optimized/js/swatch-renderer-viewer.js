@@ -80,7 +80,7 @@
 		swatchClickHandler: function () {
 			// props.setSelectedSwatchSignal.dispatch(props.materialId)
 			console.log('swatch id: ' + this.props.swatch.materialId);
-			store.setSelectedSwatch(this.props.swatch.materialId);
+			this.props.setSelectedSwatch(this.props.swatch.materialId)
 		}
 	}));
 
