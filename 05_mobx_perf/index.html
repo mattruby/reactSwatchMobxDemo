@@ -26,6 +26,39 @@
 <script type="text/javascript">
 	var store = new Swatch.SwatchStore(swatchData1);
 
+	mobx.extendObservable(store, {
+		leftPosition: 0,
+		isAnimating: false
+	});
+	store.toggleAnimation = mobx.action(function () {
+		this.isAnimating = !this.isAnimating;
+		if (!this.isAnimating) {
+			store.leftPosition = 0;
+		}
+	});
+
+	var timerId;
+	mobx.reaction(
+			function () {
+				return store.isAnimating;
+			},
+			function (isAnimating) {
+				if (isAnimating) {
+					timerId = setInterval(mobx.action(function tick () {
+						store.leftPosition += 1;
+					}), 10);
+				} else {
+					clearInterval(timerId);
+				}
+			}
+	);
+
+	mobx.autorun(function () {
+		if (store.leftPosition > 500) {
+			store.toggleAnimation();
+		}
+	});
+
 	ReactDOM.render(
 			React.createElement(
 					Swatch.ViewerFullRenderer,
@@ -33,6 +66,19 @@
 			),
 			document.getElementById('react-swatch')
 	);
+
+
+	// just for testing fun
+	var addRandomSwatches = mobx.action(function addRandomSwatches (numberToAdd) {
+		var numberOfSwatches = swatchData1.swatches.length - 1;
+		_.times(numberToAdd, function () {
+			var randomSwatchData = _.assign({}, swatchData1.swatches[_.random(numberOfSwatches)], {
+				selected: false,
+				materialId: _.uniqueId('swatch_')
+			});
+			store.swatches.push(new Swatch.SwatchModel(randomSwatchData));
+		});
+	});
 
 </script>
 

@@ -4,17 +4,32 @@
 
 	Swatch.ViewerFullRenderer = mobxReact.observer(function viewer_swatch (props) {
 
+		var store = props.store;
 		return React.DOM.div({
-				className: 'swatch-viewer'
+				className: 'swatch-viewer',
+				style: {width: 'auto'}
 			},
-			React.DOM.h1(null, props.store.title),
+			// React.createElement(mobxDevtools.default),
+			React.DOM.h1(null, store.title),
+			React.DOM.button({
+				onClick: function () {
+					addRandomSwatches(500);
+				}
+			}, 'Add 500 swatches.'),
+			React.DOM.button({
+				onClick: function () {
+					store.toggleAnimation();
+				}
+			}, 'Toggle Animation.'),
 			React.createElement(Swatch.selectedSwatchRenderer, {
-				selectedSwatch: props.store.selectedSwatch
+				selectedSwatch: store.selectedSwatch
 			}),
-			React.createElement(Swatch.swatchGroupRenderer, {
-				swatches: props.store.swatches,
-				setSelectedSwatch: props.store.setSelectedSwatch
-			})
+			React.DOM.div({style: {position: 'absolute', left: store.leftPosition + 'px'}},
+				React.createElement(Swatch.swatchGroupRenderer, {
+					swatches: store.swatches,
+					setSelectedSwatch: store.setSelectedSwatch
+				})
+			)
 		);
 	});
 
