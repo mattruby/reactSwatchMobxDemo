@@ -9,4 +9,6 @@ Swatch viewer with basic top down rendering.
 
 ## 03 MobX observer based rendering
 
-## 04 statless react components with a perf demo
+## 04 stateless react components
+
+## 05 perf demo
