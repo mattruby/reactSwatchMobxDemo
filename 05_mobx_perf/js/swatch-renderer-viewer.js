@@ -30,7 +30,7 @@
 
 	Swatch.animatableSwatchContainer = mobxReact.observer(function animatableSwatchContainer (props) {
 		var store = props.store;
-		return React.DOM.div({style: {width: '400px', position: 'absolute', left: store.leftPosition + 'px'}},
+		return React.DOM.div({style: {width: '400px', position: 'absolute', transform: 'translate3d('+store.leftPosition + 'px, 0, 0)'}},
 			React.createElement(Swatch.swatchGroupRenderer, {
 				swatches: store.swatches,
 				setSelectedSwatch: store.setSelectedSwatch

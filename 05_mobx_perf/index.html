@@ -46,7 +46,7 @@
 				if (isAnimating) {
 					timerId = setInterval(mobx.action(function tick () {
 						store.leftPosition += 1;
-					}), 10);
+					}), 5);
 				} else {
 					clearInterval(timerId);
 				}
