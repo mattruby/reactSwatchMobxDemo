@@ -7,7 +7,7 @@
 		var store = props.store;
 		return React.DOM.div({
 				className: 'swatch-viewer',
-				style: {width: 'auto'}
+				style: {width: '500px'}
 			},
 			// React.createElement(mobxDevtools.default),
 			React.DOM.h1(null, store.title),
@@ -24,12 +24,17 @@
 			React.createElement(Swatch.selectedSwatchRenderer, {
 				selectedSwatch: store.selectedSwatch
 			}),
-			React.DOM.div({style: {position: 'absolute', left: store.leftPosition + 'px'}},
-				React.createElement(Swatch.swatchGroupRenderer, {
-					swatches: store.swatches,
-					setSelectedSwatch: store.setSelectedSwatch
-				})
-			)
+			React.createElement(Swatch.animatableSwatchContainer, {store: store})
+		);
+	});
+
+	Swatch.animatableSwatchContainer = mobxReact.observer(function animatableSwatchContainer (props) {
+		var store = props.store;
+		return React.DOM.div({style: {width: '400px', position: 'absolute', left: store.leftPosition + 'px'}},
+			React.createElement(Swatch.swatchGroupRenderer, {
+				swatches: store.swatches,
+				setSelectedSwatch: store.setSelectedSwatch
+			})
 		);
 	});
 
