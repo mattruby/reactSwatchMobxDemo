@@ -23,8 +23,9 @@
 
 <script type="text/javascript">
 	var store = new Swatch.SwatchStore(swatchData1);
-	mobx.autorun(function () {
-		store.selectedSwatch; // this is for the autorun to know what to watch.
+	mobx.reaction(function () {
+		return store.selectedSwatch;
+	}, function () {
 		ReactDOM.render(
 				React.createElement(
 						Swatch.ViewerFullRenderer,
@@ -32,7 +33,7 @@
 				),
 				document.getElementById('react-swatch')
 		);
-	});
+	}, true);
 
 </script>
 
