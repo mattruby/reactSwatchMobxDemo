@@ -9,7 +9,7 @@
 		mobx.extendObservable(this, {
 			title: swatchJSONData.title,
 			swatches: _.map(swatchJSONData.swatches, function (swatchData) {
-				return new Swatch.SwatchModel(swatchData);
+				return mobx.extendObservable(swatchData, {selected: swatchData.selected});
 			}),
 			selectedSwatch: function () {
 				return _.find(this.swatches, 'selected');
@@ -21,11 +21,6 @@
 			_.find(this.swatches, {materialId: materialId}).selected = true;
 		}, this));
 
-	};
-
-	Swatch.SwatchModel = function (swatchData) {
-		_.assign(this, swatchData);
-		mobx.extendObservable(this, {selected: swatchData.selected});
 	};
 
 }());

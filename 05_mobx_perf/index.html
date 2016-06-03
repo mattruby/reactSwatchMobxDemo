@@ -12,7 +12,7 @@
 <script src="https://fb.me/react-15.1.0.js"></script>
 <script src="https://fb.me/react-dom-15.1.0.js"></script>
 <script src="https://npmcdn.com/why-did-you-update@0.0.8/umd/why-did-you-update.min.js"></script>
-<!--<script>WhyDidYouUpdate.whyDidYouUpdate(React)</script>-->
+<script>WhyDidYouUpdate.whyDidYouUpdate(React)</script>
 
 <script src="https://npmcdn.com/mobx/lib/mobx.umd.js"></script>
 <script src="https://npmcdn.com/mobx-react"></script>
@@ -72,11 +72,15 @@
 	var addRandomSwatches = mobx.action(function addRandomSwatches (numberToAdd) {
 		var numberOfSwatches = swatchData1.swatches.length - 1;
 		_.times(numberToAdd, function () {
-			var randomSwatchData = _.assign({}, swatchData1.swatches[_.random(numberOfSwatches)], {
-				selected: false,
-				materialId: _.uniqueId('swatch_')
+			var randomSwatchData = _.assign(
+					{},
+					swatchData1.swatches[_.random(numberOfSwatches)],
+					{materialId: _.uniqueId('swatch_')}
+			);
+			var randomSwatchDataObs = mobx.extendObservable(randomSwatchData, {
+				selected: false
 			});
-			store.swatches.push(new Swatch.SwatchModel(randomSwatchData));
+			store.swatches.push(randomSwatchData);
 		});
 	});
 
