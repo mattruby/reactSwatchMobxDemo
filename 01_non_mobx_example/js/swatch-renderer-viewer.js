@@ -15,7 +15,7 @@
 					React.createElement(Swatch.selectedSwatchRenderer, {selectedSwatch: selectedSwatch}),
 					React.createElement(Swatch.swatchGroupRenderer, {
 						swatches: store.swatches,
-						setSelectedSwatch: store.setSelectedSwatch
+						setSelectedSwatch: _.bind(store.setSelectedSwatch, store)
 					})
 				);
 
