@@ -27,12 +27,7 @@
 		ReactDOM.render(
 				React.createElement(
 						Swatch.ViewerFullRenderer,
-						{
-							title: store.title,
-							swatches: store.swatches,
-							selectedSwatch: store.getSelectedSwatch(),
-							setSelectedSwatch: _.bind(store.setSelectedSwatch, store)
-						}
+						{store: store}
 				),
 				document.getElementById('react-swatch')
 		);

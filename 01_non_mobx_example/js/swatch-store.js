@@ -13,11 +13,11 @@
 			getSelectedSwatch: function () {
 				return _.find(this.swatches, 'selected');
 			},
-			setSelectedSwatch: function (materialId) {
+			setSelectedSwatch: _.bind(function (materialId) {
 				this.getSelectedSwatch().selected = false;
 				_.find(this.swatches, {materialId: materialId}).selected = true;
 				this.listenableActions.swatchDataChanged.dispatch();
-			}
+			}, this)
 		});
 
 		// Actions for others to listen to
