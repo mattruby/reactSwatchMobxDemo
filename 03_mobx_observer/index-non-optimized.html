@@ -12,20 +12,24 @@
 <script src="https://fb.me/react-15.1.0.js"></script>
 <script src="https://fb.me/react-dom-15.1.0.js"></script>
 <script src="https://npmcdn.com/why-did-you-update@0.0.8/umd/why-did-you-update.min.js"></script>
-<!--<script>WhyDidYouUpdate.whyDidYouUpdate(React)</script>-->
+<script>WhyDidYouUpdate.whyDidYouUpdate(React)</script>
 
 <script src="https://npmcdn.com/mobx/lib/mobx.umd.js"></script>
+<script src="https://npmcdn.com/mobx-react"></script>
+<script src="https://npmcdn.com/mobx-react-devtools"></script>
 
 <script type="text/javascript" src="../shared_assets/swatch-data-1.js"></script>
-<script type="text/javascript" src="../shared_assets/observable-swatch-store.js"></script>
 
+<script type="text/javascript" src="../01_non_mobx_example/js/swatch-store.js"></script>
 <script type="text/javascript" src="js/swatch-renderer-viewer.js"></script>
 
 <script type="text/javascript">
-
 	var store = new Swatch.SwatchStore(swatchData1);
-	mobx.autorun(function () {
-		console.log(store.selectedSwatch);
+
+	store.setSelectedSwatch = _.bind(store.setSelectedSwatch, store);
+
+	store.listenableActions.swatchDataChanged.add(function () {
+		store.selectedSwatch = store.getSelectedSwatch();
 		ReactDOM.render(
 				React.createElement(
 						Swatch.ViewerFullRenderer,

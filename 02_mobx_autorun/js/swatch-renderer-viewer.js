@@ -2,25 +2,21 @@
 (function () {
 	"use strict";
 
-	Swatch.ViewerFullRenderer = React.createClass({
-		displayName: 'ViewerFullRenderer',
-		render: function () {
-			var store = this.props.store;
-			var selectedSwatch = store.selectedSwatch;
+	Swatch.ViewerFullRenderer = function ViewerFullRenderer (props) {
+		var store = props.store;
+		var selectedSwatch = store.selectedSwatch;
 
-			return React.DOM.div({
-					className: 'swatch-viewer'
-				},
-				React.DOM.h1(null, store.title),
-				React.createElement(Swatch.selectedSwatchRenderer, {selectedSwatch: selectedSwatch}),
-				React.createElement(Swatch.swatchGroupRenderer, {
-					swatches: store.swatches,
-					setSelectedSwatch: store.setSelectedSwatch
-				})
-			);
-
-		}
-	});
+		return React.DOM.div({
+				className: 'swatch-viewer'
+			},
+			React.DOM.h1(null, store.title),
+			React.createElement(Swatch.selectedSwatchRenderer, {selectedSwatch: selectedSwatch}),
+			React.createElement(Swatch.swatchGroupRenderer, {
+				swatches: store.swatches,
+				setSelectedSwatch: store.setSelectedSwatch
+			})
+		);
+	};
 
 	Swatch.selectedSwatchRenderer = React.createClass({
 		displayName: 'selectedSwatchRenderer',
