@@ -5,6 +5,8 @@
 	Swatch.ViewerFullRenderer = mobxReact.observer(function viewer_swatch (props) {
 
 		var store = props.store;
+		var selectedSwatch = store.selectedSwatch;
+
 		return React.DOM.div({
 				className: 'swatch-viewer',
 				style: {width: '500px'}
@@ -22,7 +24,7 @@
 				}
 			}, 'Toggle Animation.'),
 			React.createElement(Swatch.selectedSwatchRenderer, {
-				selectedSwatch: store.selectedSwatch
+				selectedSwatch: selectedSwatch
 			}),
 			React.createElement(Swatch.animatableSwatchContainer, {store: store})
 		);

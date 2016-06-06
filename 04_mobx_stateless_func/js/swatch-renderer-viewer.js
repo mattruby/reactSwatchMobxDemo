@@ -4,16 +4,19 @@
 
 	Swatch.ViewerFullRenderer = mobxReact.observer(function viewer_swatch (props) {
 
+		var store = props.store;
+		var selectedSwatch = store.selectedSwatch;
+
 		return React.DOM.div({
 				className: 'swatch-viewer'
 			},
-			React.DOM.h1(null, props.store.title),
+			React.DOM.h1(null, store.title),
 			React.createElement(Swatch.selectedSwatchRenderer, {
-				selectedSwatch: props.store.selectedSwatch
+				selectedSwatch: selectedSwatch
 			}),
 			React.createElement(Swatch.swatchGroupRenderer, {
-				swatches: props.store.swatches,
-				setSelectedSwatch: props.store.setSelectedSwatch
+				swatches: store.swatches,
+				setSelectedSwatch: store.setSelectedSwatch
 			})
 		);
 	});

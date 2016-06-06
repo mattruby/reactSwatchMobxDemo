@@ -5,15 +5,17 @@
 	Swatch.ViewerFullRenderer = React.createClass({
 		displayName: 'ViewerFullRenderer',
 		render: function () {
+			var store = this.props.store;
+			var selectedSwatch = store.selectedSwatch;
 
 			return React.DOM.div({
 					className: 'swatch-viewer'
 				},
-				React.DOM.h1(null, this.props.store.title),
-				React.createElement(Swatch.selectedSwatchRenderer, {selectedSwatch: this.props.store.selectedSwatch}),
+				React.DOM.h1(null, store.title),
+				React.createElement(Swatch.selectedSwatchRenderer, {selectedSwatch: selectedSwatch}),
 				React.createElement(Swatch.swatchGroupRenderer, {
-					swatches: this.props.store.swatches,
-					setSelectedSwatch: this.props.store.setSelectedSwatch
+					swatches: store.swatches,
+					setSelectedSwatch: store.setSelectedSwatch
 				})
 			);
 
