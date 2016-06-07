@@ -16,7 +16,7 @@
 			}
 		});
 
-		this.setSelectedSwatch = mobx.action(_.bind(function setSelectedSwatch (materialId) {
+		this.setSelectedSwatch = mobx.action('setSelectedSwatch', _.bind(function (materialId) {
 			this.selectedSwatch.selected = false;
 			_.find(this.swatches, {materialId: materialId}).selected = true;
 		}, this));
