@@ -24,8 +24,9 @@
 <script type="text/javascript">
 
 	var store = new Swatch.SwatchStore(swatchData1);
-	mobx.autorun(function () {
-		console.log(store.selectedSwatch);
+	mobx.reaction(function () {
+		store.selectedSwatch;
+	}, function () {
 		ReactDOM.render(
 				React.createElement(
 						Swatch.ViewerFullRenderer,
@@ -33,7 +34,7 @@
 				),
 				document.getElementById('react-swatch')
 		);
-	});
+	}, true);
 
 </script>
 
