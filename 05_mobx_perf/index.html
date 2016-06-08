@@ -46,7 +46,7 @@
 				if (isAnimating) {
 					timerId = setInterval(mobx.action(function tick () {
 						store.leftPosition += 1;
-					}), 5);
+					}), 20);
 				} else {
 					clearInterval(timerId);
 				}
@@ -54,7 +54,7 @@
 	);
 
 	mobx.autorun(function () {
-		if (store.leftPosition > 500) {
+		if (store.leftPosition > 600) {
 			store.toggleAnimation();
 		}
 	});
