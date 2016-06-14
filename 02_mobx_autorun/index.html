@@ -25,7 +25,7 @@
 
 	var store = new Swatch.SwatchStore(swatchData1);
 	mobx.reaction(function () {
-		store.selectedSwatch;
+		return store.selectedSwatch;
 	}, function () {
 		ReactDOM.render(
 				React.createElement(
